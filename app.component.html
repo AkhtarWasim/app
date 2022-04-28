@@ -1,0 +1,37 @@
+<div class="mn-content">
+  <header class="mn-header navbar-fixed">
+    <h1>Angular Project</h1>
+
+   <label>Search User Details:-</label> <a> <input type="search" class="search_iconset" maxlength="20" (search)="getDataByTranId($event)"></a>
+
+    <app-loader></app-loader>
+  </header>
+  <div class="default-form-box">
+    <div>
+      <table class="table" fixed-header>
+        <thead fixed-header>
+          <tr>
+            <th *ngFor="let i of [1,2,3,4,5]"><div class="animated-background"></div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of [1,2,3,4,5]">
+            <td *ngFor="let i of [1,2,3,4,5]">
+              <div class="animated-background"></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="input-field col s12">
+      <button value="History" routerLink="/History" >History
+      </button>
+    </div>
+  </div>
+  <div class="app-layout">
+    <div class="router-output">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
