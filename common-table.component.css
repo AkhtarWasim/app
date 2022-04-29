@@ -1,0 +1,151 @@
+/*.scroll{
+  max-height: 350px;
+  overflow-y: auto;
+  width: 100%;
+}*/
+
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0
+  }
+
+  100% {
+    background-position: 468px 0
+  }
+}
+
+.animated-background {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 800px 104px;
+  height: 8px;
+  position: relative;
+  border-radius: 15px;
+  width: 178px
+}
+
+
+
+
+.cursor {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+
+.iconcomplainsize {
+  color: red;
+  font-size: 20px;
+}
+
+.iconrepeatsize {
+  color: green;
+  font-size: 20px;
+}
+
+.lineZero {
+  line-height: 0 !important;
+}
+
+.iconsearchsize {
+  color: #007AFF !important;
+  font-size: 20px !important;
+}
+
+divInput {
+  height: 52px !important;
+}
+
+.searchText {
+  /* height: 50px !important;
+  margin:0px;*/
+  width: 100%;
+  margin-bottom:0px;
+}
+button.btn.btn-small.btn-rounded.waves-effect.waves-light.btn-height.theme-bg-color.cBtnPos.theaderrbtn {
+  height: 36px;
+  line-height: 36px;
+  margin-top: 4px;
+}
+button.btn.btn-small.btn-rounded.waves-effect.waves-light.btn-height.theme-bg-color.sBtnPos.theaderrbtn {
+  height: 36px;
+  line-height: 36px;
+  margin-top: 4px;
+}
+
+span.cursor.icon-refund.greencolor {
+  color: green;
+}
+.colPadding {
+  padding: 0px -1px !important;
+}
+
+.statusSize {
+  font-size: 14px !important;
+}
+.formwidth {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.sBtn {
+  right:0px;
+  text-align:center;
+  
+}
+.sBtn .btn {
+ margin-right:5px;
+}
+.formBoxTop {
+  margin-top: 22px;
+}
+
+.cBtn {
+  right: 29px !important;
+}
+label.table_lableset {
+  top: 20px;
+}
+img.complainicon {
+  width: 14px;
+  /* margin-top: 2px; */
+  vertical-align: bottom;
+  cursor:pointer;
+}
+
+tbody {
+  display: block;
+  max-height: 350px;
+  overflow: auto;
+  
+}
+
+  thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /* even columns width , fix width of table too*/
+  }
+table.table.rechargetable > thead {
+  width: calc( 100% - 17px ) /* scrollbar is average 1em/16px width, remove it from thead width */
+}
+
+
+.reportTable {
+
+padding-bottom:0px !important;
+}
+.searcheader {
+  position: absolute;
+  
+  top: 12px;
+  right: 10px;
+ 
+}
+
+

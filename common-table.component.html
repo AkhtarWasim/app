@@ -1,0 +1,116 @@
+
+<main>
+  <div class="default-form-box" *ngIf="!isShowTable">
+    <div>
+      <table class="table" fixed-header>
+        <thead fixed-header>
+          <tr>
+            <th *ngFor="let i of [1,2,3,4,5]"><div class="animated-background"></div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of [1,2,3,4,5]">
+            <td *ngFor="let i of [1,2,3,4,5]">
+              <div class="animated-background"></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+
+  <div class="default-form-box reportTable" *ngIf="isShowTable">
+    <div class="" #reportContent>
+
+      <div class="searcheader">
+
+        <span *ngIf="isSearchShow && !isShowSearchInput" class="cursor icon-searchtransactions" (click)="showSearchInput()" title="Search">
+        </span>
+
+      </div>
+
+      <table class="table rechargetable searchiconset" fixed-header #table>
+        <thead fixed-header>
+          <tr *ngIf="!isShowSearchInput">
+            <th *ngFor="let column of columns" [id]="column.header">
+              <span *ngIf="column.header != 'Search'">
+                {{'tableheader.'+column.header.toUpperCase() | translate }}
+              </span>
+            </th>
+            <!-- header reference for an individual component to show its header -->
+            <ng-container *ngTemplateOutlet="headc"></ng-container>
+          </tr>
+          <tr *ngIf="isShowSearchInput">
+            <th colspan="9" class="colPadding">
+              <form [formGroup]="searchFG" class="formwidth" (submit)="searchData()">
+                <div class="row" style="margin:0px;">
+                  <div class="vkv-input col m9 divInput">
+                    <mz-input-container>
+                      <input mz-input id="searchText" class="searchText" type="text" formControlName="searchTextCtrl" required autocomplete="off" placeholder="Search by  {{placeholder}}">
+                      <label class="table_lableset" for="searchText " style="display:none">{{'label.searchby' | translate}} {{placeholder}}</label>
+                    </mz-input-container>
+                  </div>
+                  <div class="vkv-input col m3 sBtn">
+                    <button type="submit" class="btn btn-small btn-rounded waves-effect waves-light btn-height theme-bg-color sBtnPos theaderrbtn">{{'buttonlabel.searchbutton' | translate}}</button>
+                    <button type="button" class="btn btn-small btn-rounded waves-effect waves-light btn-height theme-bg-color cBtnPos theaderrbtn cancelbutton" (click)="showTop10()">{{'buttonlabel.cancelbutton' | translate}}</button>
+                  </div>
+                </div>
+              </form>
+            </th>
+          </tr>
+        </thead>
+        <tbody style="background:#fff;">
+
+
+
+          <tr *ngIf="isSearchDataNotFound">
+            <th colspan="9">{{'message.datanotfound' | translate}}</th>
+          </tr>
+          <ng-container *ngIf="!isSearchDataNotFound">
+            <tr *ngFor="let row of jsonData.data ; let j = index">
+              <td *ngFor="let col of columns; let j = index">
+                <span title="{{row[col.columnDef]}}" *ngIf="col.header != 'Operator' && col.header != 'Complain' && col.header != 'Repeat_Recharge' && col.header != 'Search' && col.header != 'Status' && col.header != 'Check Status'">
+                  {{row[col.columnDef]}}
+                </span>
+                <span title="{{'dropdownoption.'+row[col.columnDef] | translate}}" *ngIf="col.header == 'Operator' ">
+                  {{'dropdownoption.'+row[col.columnDef] | translate }}
+                </span>
+                <span title="{{'status.'+row[col.columnDef] | translate}}" [ngStyle]="{'color':getStatusColor(row.status_name == undefined ? row.status : row.status_name)}" *ngIf="col.header == 'Status'">
+                  {{'status.'+row[col.columnDef] | translate}}
+                </span>
+                <span class="icon-print" style="cursor:pointer;" *ngIf="row[statusColumnDef]=='Successful'
+                      && jsonData.isPrint != undefined && jsonData.isPrint == true && col.header=='Receipt'" title="Receipt" (click)="print(row)">
+                </span>
+                <span *ngIf="jsonData.isComplain != undefined && jsonData.isComplain == true && col.header=='Complain'" title="Complain" (click)="raiseComplain(row)">
+
+                  <img _ngcontent-c0="" class="complainicon" src="assets/images/svg/complaint.svg">
+                </span>
+                <span *ngIf="jsonData.isRepeat !=undefined && jsonData.isRepeat == true && col.header=='Repeat'" title="Repeat" (click)="repeatProcess(row)">
+                  <img _ngcontent-c0="" class="complainicon" src="assets/images/svg/repeat.svg">
+
+                </span>
+                <span *ngIf="jsonData.isStatusCheck != undefined && jsonData.isStatusCheck  == true && col.header=='Check Status'&& (row[statusColumnDef]=='Pending' || ((row[statusColumnDef]=='Successful') && (jsonData.searchServiceName == 'Bill Payment' || jsonData.searchServiceName == 'Withdrawal' || jsonData.searchServiceName == 'Mobile Recharge' || jsonData.searchServiceName == 'DTH Recharge'))) " title="Check Status" (click)="checkStatus(row)" class="cursor icon-pending-white">
+                </span>
+                <span class="icon-refund" style="cursor:pointer;" *ngIf="row[statusColumnDef]=='Rejected'
+                      && jsonData.isRefundOtp != undefined && jsonData.isRefundOtp == true && col.header=='Refund'" title="Verify Refund Otp" (click)="VerifyRefundOtp(row)">
+                </span>
+              </td>
+              <!-- template reference wherein data is passed to individual component -->
+              <ng-container *ngTemplateOutlet="bodyc;context:{rowData:row}"></ng-container>
+
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <div class="absolute-btns-with-list" *ngIf="isExportShow">
+      <button type="submit" class="btn btn-rounded waves-effect waves-light theme-bg-color" (click)=" exportExcel()">{{'buttonlabel.exportasexcel' | translate }}</button>
+      <button type="submit" class="btn btn-rounded waves-effect waves-light theme-bg-color" (click)=" exportPDF()">{{'buttonlabel.exportaspdf' | translate }}</button>
+    </div>
+
+
+  </div>
+
+</main>

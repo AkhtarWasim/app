@@ -1,0 +1,54 @@
+<main class="top-header-container">
+
+  <div class="col s12 relative add-bank-details money-wallet-box">
+
+    <form [formGroup]="orderCardCtl" name="orderCardCtl" class="default-form-box" autocomplete="off">
+      <div class="row">
+        <div class="vkv-input full with-icon col m3">
+          <mz-input-container>
+            <span class="icon icon-money-new"></span>
+            <input mz-input id="noOFCard" numeric numericType="number" (keyup)="ViewPlans(-1)" formControlName="noOFCardCtrl" type="text" required autocomplete="off">
+
+            <label [ngClass]="{'lableactive': activeLable===true}" for="noOFCard">{{'PrepaidCard.Card Quantity' | translate}}</label>
+
+          </mz-input-container>
+        </div>
+        <div class="col m6" *ngIf="isShow">
+          <div *ngFor="let price of cardPriceList" class="card-price">{{'PrepaidCard.Amount Per Card' | translate}}:<b> {{price.amount_per_card}}</b> ,{{'PrepaidCard.Total Amount' | translate}}  : <b>{{price.total_amount}}</b></div>
+        </div>
+        <div class="col m3" *ngIf="isShow">
+          <button type="button" tabindex="2" id="btnProceed" [disabled]="!orderCardCtl.valid" (click)="orderShow()" class="btn custom-btn theme-bg-color">{{'PrepaidCard.Order' | translate}}</button>
+        </div>
+      </div>
+
+    </form>
+    <div class="default-form-box section-form-box " *ngIf="isViewShow">
+      <div class="row recharge-popup-container hide-on-small-only bgNone">
+        <div class="recharge-plan-table spacetable section-form-boxlist2">
+          <table class="table rechargetable fixedtd" fixed-header>
+            <thead fixed-header>
+              <tr>
+                <th data-field="NoOfCardFrom"> {{'PrepaidCard.No Of Card From' | translate}}</th>
+                <th data-field="NoOfCardTo">{{'PrepaidCard.No Of Card To' | translate}}</th>
+                <th data-field="AmountPerCard">{{'PrepaidCard.Amount Per Card' | translate}}</th>
+                <th data-field="TotalAmount">{{'PrepaidCard.Action' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody class="bgColor">
+              <tr *ngFor="let dt of cardDiscountList;let a=index;">
+                <td>{{dt.no_of_card_from}}</td>
+                <td>{{dt.no_of_card_to}}</td>
+                <td>Rs.{{dt.amount_per_card}}</td>
+                <td><a (click)="ViewPlans(dt.no_of_card_to)" class="cursor pricebackground">{{'PrepaidCard.Order Card' | translate}}</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <app-common-table *ngIf="isLoaded" [jsonData]="jsondata"></app-common-table>
+  </div>
+ 
+
+</main>
+

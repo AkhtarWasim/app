@@ -1,0 +1,83 @@
+.form-validation {
+  position: absolute;
+  right: 15px;
+  width: 23px;
+  height: 23px;
+  border: solid 1px #fff;
+  border-radius: 50%;
+  background: #fff;
+  top: 8px;
+  font-size: 12px;
+  line-height: 21px;
+}
+
+.default-form-box > form {
+  padding-left: 0px;
+  padding-top: 15px;
+}
+
+span.lable-input {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 15px;
+}
+
+button.btn.custom-btn.theme-bg-color {
+  border-radius: 100px;
+  line-height: 40px;
+  height: 40px;
+  margin-left: 20px;
+}
+
+.vkv-input.full.customlabel-div {
+  width: 250px;
+  float: left;
+}
+
+.tab-width {
+  min-width: 150px !important;
+}
+
+
+.form-margin {
+  margin-bottom: 10px;
+}
+
+.btncss {
+  margin-left: 0px !important;
+}
+
+.stbtncss {
+  margin-left: 409px !important;
+}
+span.check-plans-btn {
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 8px;
+  padding: 6px 15px;
+  border-radius: 15px;
+}
+.card-price {
+  padding: 10px;
+  font-size: large;
+}
+.cursor {
+  cursor: pointer
+}
+a.cursor.pricebackground {
+  background: #f4f4f4;
+  padding: 4px 10px;
+  border-radius: 5px;
+}
+
+  a.cursor.pricebackground:hover {
+    padding: 4px 10px;
+    border-radius: 5px;
+    color: #fff !important;
+  }
+.lableactive {
+  -webkit-transform: translateY(-1.5em) scale(.8) !important;
+}
