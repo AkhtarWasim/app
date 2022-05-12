@@ -2,7 +2,15 @@
   <header class="mn-header navbar-fixed">
     <h1>Angular Project</h1>
 
-   <label>Search User Details:-</label> <a> <input type="search" class="search_iconset" maxlength="20" (search)="getDataByTranId($event)"></a>
+    <label>Search User Details:-</label> <a> <input type="search" class="search_iconset" maxlength="20" (search)="getDataByTranId($event)"></a>
+
+    <input type="checkbox" checked data-toggle="toggle">
+
+    <label class="switch">
+      <input type="checkbox" [checked]="isActive" (change)="isActiveChange($event)">
+      <span class="slider round off" *ngIf="!isActive">Off</span>
+      <span class="slider round on" *ngIf="isActive">On</span>
+    </label>
 
     <app-loader></app-loader>
   </header>
